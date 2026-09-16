@@ -102,4 +102,51 @@ jobs:
 
           import android.app.Activity;
           import android.os.Bundle;
-         
+       import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+public class MainActivity extends Activity {
+
+    private WebView webView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        webView = new WebView(this);
+        setContentView(webView);
+
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
+
+        webView.setWebViewClient(new WebViewClient());
+
+        webView.loadUrl(
+            "https://sharmanikhil07650-tech.github.io/Neo--idea-s-/"
+        );
+    }
+}
+EOF
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Build APK
+        run: gradle assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Neo-Ideas-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+        
