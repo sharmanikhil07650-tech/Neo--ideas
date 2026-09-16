@@ -71,8 +71,7 @@ jobs:
 
               <application
                   android:theme="@style/AppTheme"
-                  android:label="Neo-Ideas"
-                  android:usesCleartextTraffic="true">
+                  android:label="Neo-Ideas">
 
                   <activity
                       android:name=".MainActivity"
@@ -93,7 +92,6 @@ jobs:
           <resources>
               <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
                   <item name="android:fontFamily">sans</item>
-                  <item name="android:windowActionModeOverlay">true</item>
                   <item name="android:colorAccent">#000000</item>
               </style>
           </resources>
@@ -104,68 +102,4 @@ jobs:
 
           import android.app.Activity;
           import android.os.Bundle;
-          import android.webkit.WebSettings;
-          import android.webkit.WebView;
-          import android.webkit.WebViewClient;
-
-          public class MainActivity extends Activity {
-
-              private WebView webView;
-
-              @Override
-              protected void onCreate(Bundle savedInstanceState) {
-                  super.onCreate(savedInstanceState);
-
-                  webView = new WebView(this);
-                  setContentView(webView);
-
-                  WebSettings settings = webView.getSettings();
-                  settings.setJavaScriptEnabled(true);
-                  settings.setDomStorageEnabled(true);
-                  settings.setLoadWithOverviewMode(true);
-                  settings.setUseWideViewPort(true);
-
-                  webView.setWebViewClient(new WebViewClient());
-
-                  webView.loadUrl(
-                      "https://sharmanikhil07650-tech.github.io/Neo--idea-s-/"
-                  );
-              }
-
-              @Override
-              public void onBackPressed() {
-                  if (webView.canGoBack()) {
-                      webView.goBack();
-                  } else {
-                      super.onBackPressed();
-                  }
-              }
-          }
-          EOF
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install Android SDK
-        run: |
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.7'
-
-      - name: Build APK
-        run: gradle assembleDebug
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Neo-Ideas-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+         
