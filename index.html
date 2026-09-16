@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Neo-Ideas</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111827">
+
+  <!-- Android / Chrome -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111827;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #d1d5db;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>🚀 Neo-Ideas</h1>
+    <p>Ideas that turn into possibilities.</p>
+  </div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch(err => console.log("Service Worker error:", err));
+      });
+    }
+  </script>
+
+</body>
+  </html>
